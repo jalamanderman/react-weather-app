@@ -19,7 +19,7 @@ class Recents extends Component {
 
         return (
             <div className="Favorites">
-                <h3 className="Favorites-title">My favorite cities</h3>
+                <h3 className="Favorites-title">Recent searches</h3>
                 <div className="Favorites-button-container">
                     {cityElements}
                 </div>

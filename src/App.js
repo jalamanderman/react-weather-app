@@ -31,6 +31,12 @@ class App extends Component {
 
   callWeatherData(city) {
 
+    //save city to recent cities list
+    this.updateRecentCities(city);
+
+
+    //get city weather
+
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=570a39dcca7a0510c9f57e364bf0fe50`;
     fetch(url)
       .then(handleErrors)
@@ -67,11 +73,10 @@ class App extends Component {
     this.setState({ savedCities: cityArr, hasSavedCities: hasCities });
   }
 
-  updateRecentCities(recentArr) {
-    // hasCities is set to true if length is more than 0, otherwise false
-    const hasRecents = recentArr.length > 0;
-    this.setState({ recentCities: recentArr, hasRecentCities: hasRecents });
-    console.log(recentArr);
+  updateRecentCities(recentCity) {
+    this.setState(prevState => ({recentCities: [prevState.recentCities, recentCity] }));
+    this.setState({hasRecentCities: true});
+    console.log(this.state.recentCities);
   }
 
   componentWillMount() {
@@ -118,7 +123,6 @@ class App extends Component {
             weatherData={weatherData}
             savedCities={savedCities}
             callBackFromParent={this.updateSavedCities}
-            callBackFromParent={this.updateRecentCities}
           />
         )}
         {hasSavedCities && (
