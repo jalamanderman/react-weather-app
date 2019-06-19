@@ -1,6 +1,6 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 import "../css/Favorites.css";
-import { Button } from "semantic-ui-react";
+import {Button} from "semantic-ui-react";
 
 class Recents extends Component {
     constructor(props) {
@@ -14,7 +14,7 @@ class Recents extends Component {
 
     render() {
         let cityElements = this.props.recentCities.map((city) => {
-            return <Button className="Favorites-btn" size="tiny" value={city} key={`${city}-button`} onClick={this.getWeather} content={city} />;
+            return <Button className="Favorites-btn" size="tiny" value={city} key={`${city}-button`} onClick={this.getWeather} content={city}/>;
         });
 
         return (

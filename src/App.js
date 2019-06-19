@@ -31,17 +31,13 @@ class App extends Component {
 
   callWeatherData(city) {
 
-    //save city to recent cities list
-    this.updateRecentCities(city);
-
-
     //get city weather
-
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=570a39dcca7a0510c9f57e364bf0fe50`;
     fetch(url)
       .then(handleErrors)
       .then(resp => resp.json())
       .then(data => {
+
         const weatherObj = {
           weather: data.weather,
           city: data.name,
@@ -53,6 +49,9 @@ class App extends Component {
           searchDone: true,
           errorMessage: ""
         });
+        //save city to recent cities list
+        this.updateRecentCities(data.name);
+
       })
       .catch(error => {
         // If an error is catch, it's sent to SearchBar as props
@@ -65,6 +64,7 @@ class App extends Component {
       }
       return response;
     }
+
   }
 
   updateSavedCities(cityArr) {
@@ -74,9 +74,19 @@ class App extends Component {
   }
 
   updateRecentCities(recentCity) {
-    this.setState(prevState => ({recentCities: [prevState.recentCities, recentCity] }));
-    this.setState({hasRecentCities: true});
-    console.log(this.state.recentCities);
+
+     if (this.state.recentCities.includes(recentCity)) {
+       return false;
+     } else {
+       this.setState({recentCities: this.state.recentCities.concat([recentCity])});
+       this.setState({hasRecentCities: true});
+     }
+
+    // Get data from LocalStorage if there is any and push back with new city
+    const existingCities = JSON.parse(localStorage.getItem("cityList")) || [];
+    existingCities.push(recentCity);
+    localStorage.setItem("recentList", JSON.stringify(existingCities));
+
   }
 
   componentWillMount() {
@@ -91,15 +101,17 @@ class App extends Component {
       });
     }
 
-    let recentCities = JSON.parse(localStorage.getItem("recentList") || "[]");
+    let existingRecentCities = JSON.parse(localStorage.getItem("recentList") || "[]");
 
-    if (recentCities.length !== 0) {
+    if (existingRecentCities.length !== 0) {
       this.setState({
         hasRecentCities: true,
-        recentCities: recentCities
+        recentCities: existingRecentCities
       });
     }
   }
+
+
 
   render() {
     const {
