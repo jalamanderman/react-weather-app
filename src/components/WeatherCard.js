@@ -26,13 +26,6 @@ class WeatherCard extends Component {
     existingCities.push(this.props.weatherData.city);
     localStorage.setItem("cityList", JSON.stringify(existingCities));
     this.props.callBackFromParent(existingCities);
-
-    // //now remove the city from recents list
-    // const recentCities = JSON.parse(localStorage.getItem("recentList"));
-    // const indexOfCity = recentCities.indexOf(this.props.weatherData.city);
-    // recentCities.splice(indexOfCity, 1);
-    // localStorage.setItem("recentList", JSON.stringify(recentCities));
-
   }
 
   degToCompass(num) {

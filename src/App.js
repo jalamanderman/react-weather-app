@@ -35,6 +35,9 @@ class App extends Component {
 
     //get city weather
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=570a39dcca7a0510c9f57e364bf0fe50`;
+
+    // const url = `https://api.openweathermap.org/data/2.5/forecast?q=wellington,nz&mode=xml&APPID=570a39dcca7a0510c9f57e364bf0fe50`;
+
     fetch(url)
       .then(handleErrors)
       .then(resp => resp.json())
@@ -99,6 +102,8 @@ class App extends Component {
         hasSavedCities: true,
         savedCities: existingCities
       });
+      // Set the first favourite on display
+      this.callWeatherData(existingCities[0]);
     }
 
     let existingRecentCities = JSON.parse(localStorage.getItem("recentList") || "[]");

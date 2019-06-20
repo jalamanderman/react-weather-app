@@ -19,5 +19,7 @@
 
 .Favorites-btn {
   animation: fadeInUp .4s;
+  color: #1F1B24;
+  background: #bb86fc !important;
 
 }

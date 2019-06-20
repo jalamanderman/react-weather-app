@@ -1,6 +1,7 @@
 .SearchBar {
   text-align: center;
   margin: 3rem 0 2rem;
+
 }
 
 .SearchBar-input {
@@ -11,6 +12,7 @@
   width: 20rem;
   margin: 0 auto 2rem;
   animation: fadeInDown 1s;
+  background-color: #1F1B24;
 }
 
 @media screen and (max-width: 600px) {
