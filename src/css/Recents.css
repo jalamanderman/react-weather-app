@@ -4,6 +4,10 @@
     display: flex;
     flex-flow: column wrap;
     justify-content: center;
+
+    /*position: absolute;*/
+    /*bottom: 0;*/
+    /*right: 0*/
 }
 
 .Recents-title {

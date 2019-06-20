@@ -15,7 +15,8 @@ class App extends Component {
         city: "",
         country: "",
         temp: 0,
-        wind: 0
+        wind: 0,
+        windDirection: ""
       },
       searchDone: false,
       recentCities: [],
@@ -44,7 +45,8 @@ class App extends Component {
           city: data.name,
           country: data.sys.country,
           temp: data.main.temp,
-          wind: data.wind.speed
+          wind: data.wind.speed,
+          windDirection: data.wind.deg
         };
         this.setState({
           weatherData: weatherObj,
@@ -84,11 +86,8 @@ class App extends Component {
        this.setState({hasRecentCities: true});
      }
 
-    // Get data from LocalStorage if there is any and push back with new city
-    const existingCities = JSON.parse(localStorage.getItem("cityList")) || [];
-    existingCities.push(recentCity);
+    let existingCities = this.state.recentCities;
     localStorage.setItem("recentList", JSON.stringify(existingCities));
-
   }
 
   componentWillMount() {

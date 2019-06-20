@@ -35,10 +35,19 @@ class WeatherCard extends Component {
 
   }
 
+  degToCompass(num) {
+    let val = Math.floor((num / 22.5) + 0.5);
+    let arr = ["N", "NNE", "NE", "ENE", "E", "ESE", "SE", "SSE", "S", "SSW", "SW", "WSW", "W", "WNW", "NW", "NNW"];
+    return arr[(val % 16)];
+  }
+
   render() {
-    const { city, weather, country, temp, wind } = this.props.weatherData;
+    const { city, weather, country, temp, wind, windDirection } = this.props.weatherData;
     const celcius = Math.round(temp - 273.15);
     const km = Math.round(wind* 1.609);
+
+    const windCompass = this.degToCompass(windDirection);
+
 
     const saveBtn = (
       <Button
@@ -61,10 +70,10 @@ class WeatherCard extends Component {
     return (
       <div className="WeatherCard">
         <h1 className="WeatherCard-degrees">{celcius}°</h1>
+        <p>{km} kph {windCompass}</p>
         <div className="WeatherCard-icon-container">
           <i className={`wi wi-owm-${weather[0].id} WeatherCard-icon`} />
           <p>{weather[0].main}</p>
-          <p>{km} kph</p>
         </div>
         <h2 className="WeatherCard-city">
           {city}, {country}
