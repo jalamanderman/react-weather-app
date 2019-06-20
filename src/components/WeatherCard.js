@@ -23,15 +23,23 @@ class WeatherCard extends Component {
   saveDataToLocalStorage() {
     // Get data from LocalStorage if there is any and push back with new city
     const existingCities = JSON.parse(localStorage.getItem("cityList")) || [];
-
     existingCities.push(this.props.weatherData.city);
     localStorage.setItem("cityList", JSON.stringify(existingCities));
     this.props.callBackFromParent(existingCities);
+
+    // //now remove the city from recents list
+    // const recentCities = JSON.parse(localStorage.getItem("recentList"));
+    // const indexOfCity = recentCities.indexOf(this.props.weatherData.city);
+    // recentCities.splice(indexOfCity, 1);
+    // localStorage.setItem("recentList", JSON.stringify(recentCities));
+
   }
 
   render() {
-    const { city, weather, country, temp } = this.props.weatherData;
+    const { city, weather, country, temp, wind } = this.props.weatherData;
     const celcius = Math.round(temp - 273.15);
+    const km = Math.round(wind* 1.609);
+
     const saveBtn = (
       <Button
         positive
@@ -56,6 +64,7 @@ class WeatherCard extends Component {
         <div className="WeatherCard-icon-container">
           <i className={`wi wi-owm-${weather[0].id} WeatherCard-icon`} />
           <p>{weather[0].main}</p>
+          <p>{km} kph</p>
         </div>
         <h2 className="WeatherCard-city">
           {city}, {country}

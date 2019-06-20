@@ -14,7 +14,8 @@ class App extends Component {
         weather: "",
         city: "",
         country: "",
-        temp: 0
+        temp: 0,
+        wind: 0
       },
       searchDone: false,
       recentCities: [],
@@ -37,12 +38,13 @@ class App extends Component {
       .then(handleErrors)
       .then(resp => resp.json())
       .then(data => {
-
+        console.log(data);
         const weatherObj = {
           weather: data.weather,
           city: data.name,
           country: data.sys.country,
-          temp: data.main.temp
+          temp: data.main.temp,
+          wind: data.wind.speed
         };
         this.setState({
           weatherData: weatherObj,
@@ -91,7 +93,6 @@ class App extends Component {
 
   componentWillMount() {
     // See if there's saved/recent cities in localStorage before the App is mounted
-    // Tests didn't like parsing when localStorage.getItem was undefined, so this was my solution for it
     let existingCities = JSON.parse(localStorage.getItem("cityList") || "[]");
 
     if (existingCities.length !== 0) {

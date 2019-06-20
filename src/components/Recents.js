@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import "../css/Favorites.css";
+import "../css/Recents.css";
 import {Button} from "semantic-ui-react";
 
 class Recents extends Component {
@@ -18,10 +18,11 @@ class Recents extends Component {
         });
 
         return (
-            <div className="Favorites">
-                <h3 className="Favorites-title">Recent searches</h3>
-                <div className="Favorites-button-container">
+            <div className="Recents">
+                <h4 className="Recents-title">Recent searches</h4>
+                <div className="Recents-button-container">
                     {cityElements}
+                    {/*<Button className="Favorites-btn" size="tiny" value={'Clear'} key={`{'Clear'}-button`} onClick={this.getWeather} content={'Clear'}/>*/}
                 </div>
             </div>
         );

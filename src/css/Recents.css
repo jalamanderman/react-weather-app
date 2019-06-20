@@ -1,0 +1,22 @@
+.Recents {
+    margin: 2rem 0;
+
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+}
+
+.Recents-title {
+    margin: auto;
+}
+
+.Recents-button-container {
+    margin: 1rem 0 0;
+
+    display: flex;
+    justify-content: center;
+}
+
+.Recents-btn {
+    animation: fadeInUp .4s;
+}
