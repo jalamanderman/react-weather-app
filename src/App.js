@@ -36,7 +36,7 @@ class App extends Component {
     //get city weather
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=570a39dcca7a0510c9f57e364bf0fe50`;
 
-    // const url = `https://api.openweathermap.org/data/2.5/forecast?q=wellington,nz&mode=xml&APPID=570a39dcca7a0510c9f57e364bf0fe50`;
+    // const url = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&APPID=570a39dcca7a0510c9f57e364bf0fe50`;
 
     fetch(url)
       .then(handleErrors)

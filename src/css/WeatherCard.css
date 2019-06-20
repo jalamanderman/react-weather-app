@@ -8,12 +8,11 @@
   text-align: center;
   animation: horizontalFlipIn 1s;
 
-  background-color: #1F1B24;
-
+  /*background-color: #1F1B24;*/
 }
 
 .WeatherCard-icon-container {
-  font-size: 4.5rem;
+  font-size: 3.5rem;
   margin: 2rem 0 0;
 }
 
@@ -22,6 +21,6 @@
 }
 
 .WeatherCard-degrees {
-  font-size: 6rem;
+  font-size: 4rem;
   margin: 0;
 }

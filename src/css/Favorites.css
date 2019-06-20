@@ -1,5 +1,5 @@
 .Favorites {
-  margin: 2rem 0;
+  margin: 2rem 0 0 0;
   
   display: flex;
   flex-flow: column wrap;
@@ -19,7 +19,7 @@
 
 .Favorites-btn {
   animation: fadeInUp .4s;
-  color: #1F1B24;
-  background: #bb86fc !important;
+  /*color: #1F1B24;*/
+  /*background: #bb86fc !important;*/
 
 }
