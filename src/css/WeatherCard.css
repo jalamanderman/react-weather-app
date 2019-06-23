@@ -1,6 +1,6 @@
 .WeatherCard {
   /*border: 1px solid rgba(31, 0, 20, 0.89);*/
-  /*box-shadow: .15rem .15rem .5rem rgba(217, 217, 217, 0.23);*/
+  box-shadow: .15rem .15rem .5rem rgba(217, 217, 217, 0.23);
   border-radius: .28571429rem;
   margin: auto;
   padding: 2rem;

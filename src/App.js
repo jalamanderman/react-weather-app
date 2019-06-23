@@ -18,6 +18,7 @@ class App extends Component {
         wind: 0,
         windDirection: ""
       },
+      forecast: [],
       searchDone: false,
       recentCities: [],
       savedCities: [],
@@ -27,6 +28,7 @@ class App extends Component {
     };
 
     this.callWeatherData = this.callWeatherData.bind(this);
+    this.callForecastData = this.callForecastData.bind(this);
     this.updateSavedCities = this.updateSavedCities.bind(this);
     this.updateRecentCities = this.updateRecentCities.bind(this);
   }
@@ -41,7 +43,7 @@ class App extends Component {
       .then(handleErrors)
       .then(resp => resp.json())
       .then(data => {
-        console.log(data);
+        // console.log(data);
         const weatherObj = {
           weather: data.weather,
           city: data.name,
@@ -57,6 +59,7 @@ class App extends Component {
         });
         //save city to recent cities list
         this.updateRecentCities(data.name);
+        this.callForecastData(city);
 
       })
       .catch(error => {
@@ -76,56 +79,21 @@ class App extends Component {
   callForecastData(city) {
 
     //get city weather
-
-    const url = `https://api.openweathermap.org/data/2.5/forecast?q=wellington,nz&APPID=570a39dcca7a0510c9f57e364bf0fe50`;
+    const url = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&APPID=570a39dcca7a0510c9f57e364bf0fe50`;
 
     fetch(url)
-        .then(handleErrors)
         .then(resp => resp.json())
         .then(data => {
-          console.log(data);
-
           let jsonArray = data.list;
 
-          // for (let i = 0; i < 5; i++) {
-          //
-          // }
-
-          jsonArray.forEach( function (entry) {
-                console.log(entry.dt_txt);
-
-              }
-          );
-
-          const forecastObj = {
-            weather: data.weather,
-            city: data.name,
-            country: data.sys.country,
-            temp: data.main.temp,
-            wind: data.wind.speed,
-            windDirection: data.wind.deg
-          };
           this.setState({
-            weatherData: forecastObj,
-            searchDone: true,
-            errorMessage: ""
+            forecast: jsonArray
           });
-          //save city to recent cities list
-          this.updateRecentCities(data.name);
 
-        })
-        .catch(error => {
-          // If an error is catch, it's sent to SearchBar as props
-          this.setState({ errorMessage: error.message });
+          console.log(this.state.forecast);
         });
 
-    function handleErrors(response) {
-      if (!response.ok) {
-        throw Error(response.statusText);
-      }
-      return response;
-    }
-
+    // console.log('hi'+ this.state.forecast + "hi");
   }
 
   updateSavedCities(cityArr) {
@@ -169,8 +137,6 @@ class App extends Component {
       });
     }
   }
-
-
 
   render() {
     const {
