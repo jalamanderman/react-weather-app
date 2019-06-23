@@ -39,6 +39,7 @@ class SearchBar extends Component {
 
     return (
       <div className="SearchBar">
+
         {this.props.error && errorMessage}
         {this.state.warning && warningMessage}
         <Form onSubmit={this.sendValueToParent}>

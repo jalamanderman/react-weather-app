@@ -34,9 +34,7 @@ class App extends Component {
   callWeatherData(city) {
 
     //get city weather
-    // const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=570a39dcca7a0510c9f57e364bf0fe50`;
-
-    const url = `https://api.openweathermap.org/data/2.5/forecast?q=wellington,nz&APPID=570a39dcca7a0510c9f57e364bf0fe50`;
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=570a39dcca7a0510c9f57e364bf0fe50`;
 
 
     fetch(url)
@@ -88,11 +86,16 @@ class App extends Component {
           console.log(data);
 
           let jsonArray = data.list;
+
+          // for (let i = 0; i < 5; i++) {
+          //
+          // }
+
           jsonArray.forEach( function (entry) {
                 console.log(entry.dt_txt);
+
               }
           );
-          console.log('hi');
 
           const forecastObj = {
             weather: data.weather,
