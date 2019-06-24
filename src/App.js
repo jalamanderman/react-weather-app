@@ -5,6 +5,7 @@ import SearchBar from "./components/SearchBar";
 import WeatherCard from "./components/WeatherCard";
 import Favorites from "./components/Favorites";
 import Recents from "./components/Recents";
+import Forecast48h from "./components/Forecast";
 
 class App extends Component {
   constructor(props) {
@@ -84,16 +85,29 @@ class App extends Component {
     fetch(url)
         .then(resp => resp.json())
         .then(data => {
-          let jsonArray = data.list;
+
+          const forecastArray = [];
+
+          for (let i = 0; i < 5; i++) {
+
+            let forecastObj = {
+              date: data.list[i].dt,
+              weather: data.list[i].weather,
+              temp: data.list[i].main.temp,
+              wind: data.list[i].wind.speed,
+              windDir: data.list[i].wind.deg
+            };
+
+            forecastArray.push(forecastObj);
+
+          }
 
           this.setState({
-            forecast: jsonArray
+            forecast: forecastArray
           });
 
           console.log(this.state.forecast);
         });
-
-    // console.log('hi'+ this.state.forecast + "hi");
   }
 
   updateSavedCities(cityArr) {
@@ -147,6 +161,7 @@ class App extends Component {
       errorMessage,
       recentCities,
       hasRecentCities,
+      forecast
     } = this.state;
     
     return (
@@ -162,6 +177,9 @@ class App extends Component {
             callBackFromParent={this.updateSavedCities}
           />
         )}
+        <Forecast48h
+            forecast={forecast}
+        />
         {hasSavedCities && (
           <Favorites
             savedCities={savedCities}
