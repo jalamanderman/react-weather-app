@@ -1,6 +1,7 @@
 ## Weather App
 
-A weather app done with React. Allows the user to search for the weather in their cities and save them to favorites.
+A weather app done with React. 
+Allows the user to search for the weather in their cities and save them to favorites.
 
 See a demo here - https://jalamanderman.github.io/react-weather-app/
 
